@@ -1,5 +1,5 @@
 float getAngle(Pixel p1, Pixel p2, Pixel p3) {
-  float angle=abs(PVector.sub(new PVector(p1.x_,p1.y_), new PVector(p2.x_,p2.y_)).heading()-PVector.sub(new PVector(p3.x_,p3.y_), new PVector(p2.x_,p2.y_)).heading());
+  float angle=abs(PVector.sub(new PVector(p1.x_, p1.y_), new PVector(p2.x_, p2.y_)).heading()-PVector.sub(new PVector(p3.x_, p3.y_), new PVector(p2.x_, p2.y_)).heading());
   return (angle<PI)?angle:2*PI-angle;
 }
 
@@ -14,4 +14,8 @@ void approximate(List<Pixel> points, int angle) {
       i--;
     }
   }
+}
+
+void ellipse(PVector p, float w, float h) {
+  ellipse(p.x, p.y, w, h);
 }

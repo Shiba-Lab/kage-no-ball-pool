@@ -52,7 +52,7 @@ void draw() {
   pg.background(255);
   if (newFrame) {//新しいフレームがあったら実行
     camImg=cam.copy();
-    if(camImg==null)return;
+    if (camImg==null)return;
     newFrame=false;
     if (pt.hasData()) {
       shadow.update();
@@ -75,7 +75,7 @@ void draw() {
   particles.display(pg, mono);
 
   pg.endDraw();
-  image(pg, 0, 0,width,height);
+  image(pg, 0, 0, width, height);
   if (loadF) {
     pt.load();
     pt.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);

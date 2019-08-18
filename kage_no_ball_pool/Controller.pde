@@ -145,9 +145,6 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
     gravity=g;
     box2d.setGravity(0, -g);
   }
-  void ellipse(PVector p, float w, float h) {
-    ellipse(p.x, p.y, w, h);
-  }
   void draw() {
     image(bg, width*0.5, height*0.5);
     if (camImg!=null)
@@ -192,7 +189,7 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
   void mouseReleased() {
     corners.released();
   }
-  void exit(){
+  void exit() {
     parent.exit();
   }
   void update() {//loadなどの呼び出しの時に、スライダーなどにも数値を反映するための処理
@@ -278,7 +275,7 @@ class Controller2 extends PApplet {//フレームレートとコンソールを�
     if (frameCount%10==0)
       myChart.push("incoming", (parent.frameRate));
   }
-  void exit(){
+  void exit() {
     parent.exit();
   }
 }

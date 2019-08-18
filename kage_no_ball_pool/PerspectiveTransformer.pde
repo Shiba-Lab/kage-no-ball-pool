@@ -36,11 +36,11 @@ class PerspectiveTransformer {
     if (i_corner!=null)
       computeParameter();
   }
-  
-  PVector[] getI_corner(){
+
+  PVector[] getI_corner() {
     return i_corner;
   }
-  PVector[] getO_corner(){
+  PVector[] getO_corner() {
     return o_corner;
   }
   void setO_corner(float x0, float y0, float x1, float y1, float x2, float y2, float x3, float y3) {
@@ -185,7 +185,6 @@ class PerspectiveTransformer {
     i_corner=expandP(i_corner, -1);
     computeParameter();
   }
-  
 }
 
 PVector[] expandP(PVector[] p, float d) {

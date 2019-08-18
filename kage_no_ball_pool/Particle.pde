@@ -117,9 +117,9 @@ class Solids {
   Solids() {
     particles=new ArrayList<Solid>();
     gp=new PVector(width/2, 10);
-    gp2=gp.copy().add(100,0);
+    gp2=gp.copy().add(100, 0);
   }
-  void display(PGraphics pg,PImage img) {
+  void display(PGraphics pg, PImage img) {
     for (int i=0; i<particles.size(); i++) {
       Solid p=particles.get(i);
       PVector pos=p.getPosition();
@@ -128,7 +128,7 @@ class Solids {
         if (img.get((int)pos.x+x, (int)pos.y+y)==color(255)) {
           pos.add(x, y);
           if (x!=0||y!=0) {
-            p.setVelocity(PVector.mult(PVector.add(p.getVelocity(), (new PVector(x, y))),-1));//一応飛んだ方向に速度を与えてるつもり
+            p.setVelocity(PVector.mult(PVector.add(p.getVelocity(), (new PVector(x, y))), -1));//一応飛んだ方向に速度を与えてるつもり
           }
           break;
         }
@@ -161,7 +161,7 @@ class Solids {
     }
   }
   void add() {
-    float x,y;
+    float x, y;
     if (random(0, 1)<0.5) {//50%の確率で丸と四角を生成する
       x=gp.x;
       y=gp.y;
@@ -193,12 +193,12 @@ class Solids {
   }
   void setGp(PVector p) {
     gp=p.copy();
-    gp2=gp.copy().add(700,0);
+    gp2=gp.copy().add(700, 0);
   }
   void setGp(float x, float y) {
     setGp2(new PVector(x, y));
   }
-  
+
   PVector getGp2() {
     return gp2;
   }
@@ -233,7 +233,7 @@ class Solids {
     gene.setFloat("x", gp.x);
     gene.setFloat("y", gp.y);
     defs.setInt("value", defsize);
-    pop.setInt("value",popstep);
+    pop.setInt("value", popstep);
     root.addChild(gene);
     root.addChild(defs);
     root.addChild(pop);

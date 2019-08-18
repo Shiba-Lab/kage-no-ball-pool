@@ -9,7 +9,7 @@ public void printlnNumberOfBlobs(BlobDetector blob_detector) {
   text("number of blobs: "+blob_detector.getBlobs().size(), 10, 40);
 }
 
-public void drawContour(ArrayList<Pixel> pixel_list, int stroke_color, int fill_color, boolean fill, float stroke_weight,PGraphics pg) {
+public void drawContour(ArrayList<Pixel> pixel_list, int stroke_color, int fill_color, boolean fill, float stroke_weight, PGraphics pg) {
   if (!fill)pg.noFill();
   else pg.fill(fill_color);
   pg.stroke(stroke_color);
