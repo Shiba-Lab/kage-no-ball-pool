@@ -192,6 +192,9 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
   void mouseReleased() {
     corners.released();
   }
+  void exit(){
+    parent.exit();
+  }
   void update() {//loadなどの呼び出しの時に、スライダーなどにも数値を反映するための処理
     cp5.getController("brightness").setValue(shadow.getBr());
     cp5.getController("resolution").setValue(shadow.getResolution());
@@ -274,5 +277,8 @@ class Controller2 extends PApplet {//フレームレートとコンソールを�
     }
     if (frameCount%10==0)
       myChart.push("incoming", (parent.frameRate));
+  }
+  void exit(){
+    parent.exit();
   }
 }
