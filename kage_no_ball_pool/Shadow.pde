@@ -56,7 +56,6 @@ class Shadow {
 
   void addBody(List<Pixel> points) {
     ChainShape chain = new ChainShape();
-    //approximate(points,10);
     Vec2[] vertices = new Vec2[points.size()];
     for (int i = 0; i < vertices.length; i++) {
       PVector p=pt.adapt(points.get(i).x_, points.get(i).y_);

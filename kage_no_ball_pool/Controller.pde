@@ -233,7 +233,6 @@ class Controller2 extends PApplet {//フレームレートとコンソールを�
     myTextarea = cp5.addTextarea("txt")
       .setPosition(width*0.1, height*0.7)
       .setSize((int)(width*0.8), (int)(height*0.3))
-      .setFont(createFont("", 14))
       .setLineHeight(14)
       .setColor(color(200))
       .setColorBackground(color(0, 100))
