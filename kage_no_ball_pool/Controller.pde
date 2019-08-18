@@ -15,7 +15,7 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
     PApplet.runSketch(new String[]{this.getClass().getName()}, this);
   }
   public void settings() {
-    size(w, h);
+    size(w, h, P3D);
   }
   public void setup() {
     surface.setLocation(10, 10);
@@ -150,7 +150,8 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
   }
   void draw() {
     image(bg, width*0.5, height*0.5);
-    image(cam, width*0.5, height*0.8, imgw, imgh);
+    if (camImg!=null)
+      image(camImg, width*0.5, height*0.8, imgw, imgh);
     fill(255, 200);
     if (gp!=null) {
       fill(0, 0, 255);

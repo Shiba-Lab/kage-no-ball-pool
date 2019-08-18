@@ -9,17 +9,17 @@ public void printlnNumberOfBlobs(BlobDetector blob_detector) {
   text("number of blobs: "+blob_detector.getBlobs().size(), 10, 40);
 }
 
-public void drawContour(ArrayList<Pixel> pixel_list, int stroke_color, int fill_color, boolean fill, float stroke_weight) {
-  if (!fill)noFill();
-  else fill(fill_color);
-  stroke(stroke_color);
-  strokeWeight(stroke_weight);
-  beginShape();
+public void drawContour(ArrayList<Pixel> pixel_list, int stroke_color, int fill_color, boolean fill, float stroke_weight,PGraphics pg) {
+  if (!fill)pg.noFill();
+  else pg.fill(fill_color);
+  pg.stroke(stroke_color);
+  pg.strokeWeight(stroke_weight);
+  pg.beginShape();
   for (int idx = 0; idx < pixel_list.size(); idx++) {
     PVector p = pc.adapt(pixel_list.get(idx).x_, pixel_list.get(idx).y_);
-    vertex(p.x, p.y);
+    pg.vertex(p.x, p.y);
   }
-  endShape();
+  pg.endShape();
 }
 public void drawMono(ArrayList<Pixel> pixel_list, PGraphics pg) {
   pg.fill(0);

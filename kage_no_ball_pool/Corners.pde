@@ -14,13 +14,15 @@ class Corners {
     }
   }
   void display() {
+    pa.fill(255);
+    for (int i=0; i<n; i++) {
+      if (hold==i)pa.noFill();
+      pa.ellipse(corner[i].x, corner[i].y, 10, 10);
+    }
     pa.beginShape();
     pa.stroke(255);
     pa.strokeWeight(1);
     for (int i=0; i<n; i++) {
-      pa.fill(255);
-      if (hold==i)pa.noFill();
-      pa.ellipse(corner[i].x, corner[i].y, 10, 10);
       pa.noFill();
       pa.vertex(corner[i].x, corner[i].y);
     }

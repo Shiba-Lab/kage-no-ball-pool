@@ -2,10 +2,10 @@ public final class BLOBable_SHADOW implements BLOBable {//blobの判定を行う
   int width_, height_;
   private String name_; 
   private Shadow shadow;
-  private Capture cam;
-  public BLOBable_SHADOW(PApplet papplet, Capture cam, Shadow shadow) {
+  private PImage img;
+  public BLOBable_SHADOW(PApplet papplet, PImage img, Shadow shadow) {
     this.shadow=shadow;
-    this.cam=cam;
+    this.img=img;
   }
 
   //@Override
@@ -19,8 +19,8 @@ public final class BLOBable_SHADOW implements BLOBable {//blobの判定を行う
   //@Override
   public final boolean isBLOBable(int pixel_index, int x_, int y_) {//各ドットがblobに属するかの判定
     PVector p=pc.adapt(x_, y_);
-    if(!(p.x>0&&p.x<width&&p.y>0&&p.y<height))return false;//ドットの位置がスクリーン外部だった場合に外枠ができてしまうため判定から外す
-    color c=cam.get((int)x_, (int)y_);//色の取得
+    if(!(p.x>0&&p.x<pg.width&&p.y>0&&p.y<pg.height))return false;//ドットの位置がスクリーン外部だった場合に外枠ができてしまうため判定から外す
+    color c=img.get((int)x_, (int)y_);//色の取得
     if (red(c)<shadow.getBr()&&green(c)<shadow.getBr()&&blue(c)<shadow.getBr()) {//色がしきい値以下だった場合にblobに属するように判定
       return true;
     } else {

@@ -21,21 +21,21 @@ class Shadow {
     killBody();
     bd.update();
     ArrayList<Blob> blob_list = bd.getBlobs();
-    for (int blob_idx = 0; blob_idx < blob_list.size(); blob_idx++ ) {
-      Blob blob = blob_list.get(blob_idx);
-      ArrayList<Contour> contour_list = blob.getContours();
-      for (int contour_idx = 0; contour_idx < contour_list.size(); contour_idx++ ) {
-        Contour contour = contour_list.get(contour_idx);
-        if ( contour_idx == 0) {
-          addBody(contour.getPixels());
-        }
-      }
-    }
+    //for (int blob_idx = 0; blob_idx < blob_list.size(); blob_idx++ ) {
+    //  Blob blob = blob_list.get(blob_idx);
+    //  ArrayList<Contour> contour_list = blob.getContours();
+    //  for (int contour_idx = 0; contour_idx < contour_list.size(); contour_idx++ ) {
+    //    Contour contour = contour_list.get(contour_idx);
+    //    if ( contour_idx == 0) {
+    //      addBody(contour.getPixels());
+    //    }
+    //  }
+    //}
   }
   //輪郭などの表示
-  void display(PGraphics pg) {
-    pg.beginDraw();
-    pg.background(255);
+  void display(PGraphics pg, PGraphics mono) {
+    mono.beginDraw();
+    mono.background(255);
     ArrayList<Blob> blob_list = bd.getBlobs();
     for (int blob_idx = 0; blob_idx < blob_list.size(); blob_idx++ ) {
       Blob blob = blob_list.get(blob_idx);
@@ -43,15 +43,15 @@ class Shadow {
       for (int contour_idx = 0; contour_idx < contour_list.size(); contour_idx++ ) {
         Contour contour = contour_list.get(contour_idx);
         if ( contour_idx == 0) {
-          fill(0, 200, 200);
+          pg.fill(0, 200, 200);
           if (modeView) {
-            drawContour(contour.getPixels(), color(255, 0, 0), color(255, 0, 255, 100), true, 1);//表示用画像の生成
+            drawContour(contour.getPixels(), color(255, 0, 0), color(255, 0, 255, 100), true, 1, pg);//表示用画像の生成
           }
-          drawMono(contour.getPixels(), pg);//particleの判定用の2極画像を生成
+          drawMono(contour.getPixels(), mono);//particleの判定用の2極画像を生成
         }
       }
     }
-    pg.endDraw();
+    mono.endDraw();
   }
 
   void addBody(List<Pixel> points) {
@@ -76,15 +76,15 @@ class Shadow {
     }
     bodies.clear();
   }
-  
-  void setResolution(int resolution){
+
+  void setResolution(int resolution) {
     this.resolution=resolution;
     bd.setResolution(resolution);
   }
-  int getResolution(){
+  int getResolution() {
     return resolution;
   }
-  void setBr(int br){
+  void setBr(int br) {
     this.br=br;
   }
   int getBr() {

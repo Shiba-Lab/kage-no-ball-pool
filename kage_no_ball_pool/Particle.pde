@@ -15,7 +15,7 @@ abstract class Solid {//オブジェクトを定義する抽象クラス
     box2d.destroyBody(body);
   }
   abstract boolean done();
-  abstract void display() ;
+  abstract void display(PGraphics pg) ;
   void makeBody(float x, float y, float n) {
     BodyDef bd = new BodyDef();
     bd.position = box2d.coordPixelsToWorld(x, y);
@@ -61,17 +61,17 @@ class Box extends Solid {
     }
     return false;
   }
-  void display() {
+  void display(PGraphics pg) {
     pos=getPosition();
-    fill(c);
-    stroke(0);
-    strokeWeight(0);
-    rectMode(CENTER);
-    pushMatrix();
-    translate(pos.x, pos.y);
-    rotate(-body.getAngle());
-    rect(0, 0, getSize(), getSize());
-    popMatrix();
+    pg.fill(c);
+    pg.stroke(0);
+    pg.strokeWeight(0);
+    pg.rectMode(CENTER);
+    pg.pushMatrix();
+    pg.translate(pos.x, pos.y);
+    pg.rotate(-body.getAngle());
+    pg.rect(0, 0, getSize(), getSize());
+    pg.popMatrix();
   }
 
   Shape getShape(float d) {
@@ -94,12 +94,12 @@ class Particle extends Solid {
     }
     return false;
   }
-  void display() {
+  void display(PGraphics pg) {
     pos=getPosition();
-    fill(c);
-    stroke(0);
-    strokeWeight(0);
-    ellipse(pos.x, pos.y, getSize()*2, getSize()*2);
+    pg.fill(c);
+    pg.stroke(0);
+    pg.strokeWeight(0);
+    pg.ellipse(pos.x, pos.y, getSize()*2, getSize()*2);
   }
   Shape getShape(float r) {
     CircleShape cs = new CircleShape();
@@ -119,16 +119,16 @@ class Solids {
     gp=new PVector(width/2, 10);
     gp2=gp.copy().add(100,0);
   }
-  void display(PImage img) {
+  void display(PGraphics pg,PImage img) {
     for (int i=0; i<particles.size(); i++) {
       Solid p=particles.get(i);
       PVector pos=p.getPosition();
       int x=0, y=0, d=0;
-      while (pos.x+x<width&&pos.x+x>0&&pos.y+y<height&&pos.y+y>0) {//影の部分に入っていたら一番近い白い部分に跳ぶ 判定は影を黒で塗った2極画像で行う
+      while (pos.x+x<img.width&&pos.x+x>0&&pos.y+y<img.height&&pos.y+y>0) {//影の部分に入っていたら一番近い白い部分に跳ぶ 判定は影を黒で塗った2極画像で行う
         if (img.get((int)pos.x+x, (int)pos.y+y)==color(255)) {
           pos.add(x, y);
           if (x!=0||y!=0) {
-            p.setVelocity(PVector.add(p.getVelocity(), (new PVector(x, y))));//一応飛んだ方向に速度を与えてるつもり
+            p.setVelocity(PVector.mult(PVector.add(p.getVelocity(), (new PVector(x, y))),-1));//一応飛んだ方向に速度を与えてるつもり
           }
           break;
         }
@@ -157,7 +157,7 @@ class Solids {
         i--;
         continue;
       }
-      p.display();
+      p.display(pg);
     }
   }
   void add() {
