@@ -59,7 +59,7 @@ class Shadow {
     //approximate(points,10);
     Vec2[] vertices = new Vec2[points.size()];
     for (int i = 0; i < vertices.length; i++) {
-      PVector p=pc.adapt(points.get(i).x_, points.get(i).y_);
+      PVector p=pt.adapt(points.get(i).x_, points.get(i).y_);
       Vec2 edge = box2d.coordPixelsToWorld(p.x, p.y);
       vertices[i] = edge;
     }

@@ -88,19 +88,19 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
       .setLabel("expand")
       .setPosition(width*0.6, height*0.3)
       .setSize((int)(width*0.2), (int)(height*0.05))
-      .plugTo(pc, "expand");
+      .plugTo(pt, "expand");
 
     cp5.addButton("con")//四隅のポイントの縮小
       .setLabel("contract")
       .setPosition(width*0.6, height*0.35)
       .setSize((int)(width*0.2), (int)(height*0.05))
-      .plugTo(pc, "contract");
+      .plugTo(pt, "contract");
 
     cp5.addButton("clear_corner")//四隅のポイントの消去
       .setLabel("clear_corner")
       .setPosition(width*0.6, height*0.4)
       .setSize((int)(width*0.2), (int)(height*0.05))
-      .plugTo(pc, "clearI_corner");
+      .plugTo(pt, "clearI_corner");
     //.plugTo(particles, "clear");
 
 
@@ -131,7 +131,7 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
         for (int i=0; i<n; i++) {
           temp[i]=new PVector(map(corner[i].x, width*0.5-imgw*0.5, width*0.5-imgw*0.5+imgw, 0, cam.width), map(corner[i].y, height*0.8-imgh*0.5, height*0.8-imgh*0.5+imgh, 0, cam.height));
         }
-        pc.setI_corner(temp);
+        pt.setI_corner(temp);
       }
     }
     , 
@@ -174,11 +174,11 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
     if (width*0.5-imgw*0.5<mouseX&&mouseX<width*0.5+imgw*0.5&&height*0.8-imgh*0.5<mouseY&&mouseY<height*0.8+imgh*0.5) {
       if (mousePressed) {
         if (mouseButton==CENTER) {//発生地点の設定
-          particles.setGp(pc.adapt(map(mouseX, width*0.5-imgw*0.5, width*0.5+imgw*0.5, 0, cam.width), map(mouseY, height*0.8-imgh*0.5, height*0.8+imgh*0.5, 0, cam.height)));
+          particles.setGp(pt.adapt(map(mouseX, width*0.5-imgw*0.5, width*0.5+imgw*0.5, 0, cam.width), map(mouseY, height*0.8-imgh*0.5, height*0.8+imgh*0.5, 0, cam.height)));
           gp=new PVector(mouseX, mouseY);
         } else if (mouseButton==RIGHT) {//四隅のポイントの設定
           if (width*0.5-imgw*0.5<mouseX&&mouseX<width*0.5+imgw*0.5&&height*0.8-imgh*0.5<mouseY&&mouseY<height*0.8+imgh*0.5) {
-            pc.addI_corner(map(mouseX, width*0.5-imgw*0.5, width*0.5+imgw*0.5, 0, cam.width), map(mouseY, height*0.8-imgh*0.5, height*0.8+imgh*0.5, 0, cam.height));
+            pt.addI_corner(map(mouseX, width*0.5-imgw*0.5, width*0.5+imgw*0.5, 0, cam.width), map(mouseY, height*0.8-imgh*0.5, height*0.8+imgh*0.5, 0, cam.height));
           }
         }
       }
@@ -198,9 +198,9 @@ class Controller extends PApplet {//PC上で当日調整をしやすくするた
     cp5.getController("particle_size").setValue(particles.getDefsize());
     cp5.getController("particle_pop").setValue(particles.getPopstep());
     cp5.getController("gravity").setValue(gravity);
-    PVector[] corner=pc.getI_corner();
+    PVector[] corner=pt.getI_corner();
     if (corner!=null) {
-      int n=pc.inum;
+      int n=pt.inum;
       for (int i=0; i<n; i++) {
         corners.setCorner(i, new PVector(map(corner[i].x, 0, cam.width, width*0.5-imgw*0.5, width*0.5-imgw*0.5+imgw), map(corner[i].y, 0, cam.height, height*0.8-imgh*0.5, height*0.8-imgh*0.5+imgh)));
       }

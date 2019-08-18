@@ -17,7 +17,7 @@ Capture cam;
 Box2DProcessing box2d;
 Shadow shadow;
 Solids particles;
-ProjectorCorrection pc;
+PerspectiveTransformer pt;
 Controller ctrl;//別ウィンドウ1
 Controller2 ctrl2;//別ウィンドウ2
 float gravity=10;
@@ -36,8 +36,8 @@ void setup() {
   box2d.setGravity(0, -gravity);
   shadow=new Shadow(this, cam);
   particles=new Solids();
-  pc=new ProjectorCorrection();
-  pc.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);
+  pt=new PerspectiveTransformer();
+  pt.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);
   ctrl=new Controller(this, 1000, 1000, "Controller1");
   ctrl2=new Controller2(this, 1000, 1000, "Controller2");
   loadF=true;//最初に1度ロードする
@@ -51,12 +51,12 @@ void draw() {
     camImg=cam.copy();
     if(camImg==null)return;
     newFrame=false;
-    if (pc.hasData()) {
+    if (pt.hasData()) {
       shadow.update();
     }
   }
 
-  if (!pc.hasData()) {
+  if (!pt.hasData()) {
     image(cam, 100, 100, cam.width, cam.height);
     noFill();
     stroke(255);
@@ -74,8 +74,8 @@ void draw() {
   pg.endDraw();
   image(pg, 0, 0,width,height);
   if (loadF) {
-    pc.load();
-    pc.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);
+    pt.load();
+    pt.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);
     shadow.load();
     particles.load();
     load();
@@ -84,7 +84,7 @@ void draw() {
     loadF=false;
   }
   if (saveF) {
-    pc.save();
+    pt.save();
     shadow.save();
     particles.save();
     save();
@@ -103,23 +103,23 @@ void captureEvent(Capture cam) {
 void keyPressed() {
   switch(key) {
   case ' ':
-    pc.clearI_corner();
+    pt.clearI_corner();
     break;
   }
   if (key==CODED) {
     switch(keyCode) {
     case LEFT:
-      pc.expand();
+      pt.expand();
       break;
     case RIGHT:
-      pc.contract();
+      pt.contract();
       break;
     }
   }
 }
 void mousePressed() {
   if (mouseButton==RIGHT) {
-    pc.addI_corner(mouseX, mouseY);
+    pt.addI_corner(mouseX, mouseY);
   }
 }
 void saveData() {

@@ -16,7 +16,7 @@ public void drawContour(ArrayList<Pixel> pixel_list, int stroke_color, int fill_
   pg.strokeWeight(stroke_weight);
   pg.beginShape();
   for (int idx = 0; idx < pixel_list.size(); idx++) {
-    PVector p = pc.adapt(pixel_list.get(idx).x_, pixel_list.get(idx).y_);
+    PVector p = pt.adapt(pixel_list.get(idx).x_, pixel_list.get(idx).y_);
     pg.vertex(p.x, p.y);
   }
   pg.endShape();
@@ -25,7 +25,7 @@ public void drawMono(ArrayList<Pixel> pixel_list, PGraphics pg) {
   pg.fill(0);
   pg.beginShape();
   for (int idx = 0; idx < pixel_list.size(); idx++) {
-    PVector p = pc.adapt(pixel_list.get(idx).x_, pixel_list.get(idx).y_);
+    PVector p = pt.adapt(pixel_list.get(idx).x_, pixel_list.get(idx).y_);
     pg.vertex(p.x, p.y);
   }
   pg.endShape();

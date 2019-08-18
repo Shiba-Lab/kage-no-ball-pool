@@ -1,15 +1,10 @@
-/* ver1.1
- *
- */
-
-
-class ProjectorCorrection {
+class PerspectiveTransformer {
   private double[] parameter;
   private PVector[] i_corner;//左上,右上,右下,左下の順
   private PVector[] o_corner;//左上,右上,右下,左下の順
   private int onum;
   private int inum;
-  ProjectorCorrection() {
+  PerspectiveTransformer() {
     parameter=null;
     i_corner=null;
     o_corner=null;
