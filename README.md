@@ -1,3 +1,6 @@
 # kage-no-ball-pool
-影のボールプール<br>
-processing.video, box2d_processing, controlP5, diewald_CV_kitのライブラリを追加してください
+影のボールプール
+
+![kage_no_ball_pool](C:\Users\Daisuke\Documents\GitHub\kage-no-ball-pool\kage_no_ball_pool.gif)
+
+pdeと同じ階層のcodeフォルダ内にbox2d_processing.jar, controlP5.jar, diewald_CV_kit.jar, jbox2d-library-2.2.1-ds.jarを追加してください
