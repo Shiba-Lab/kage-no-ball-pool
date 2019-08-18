@@ -24,7 +24,7 @@ float gravity=10;
 boolean loadF, saveF, clearF;//save,load,clearの同期をとるためのフラグ
 int process_width = 1280;
 int process_height = 720;
-int controller_size = 1;
+float controller_size = 1;
 void settings() {//SecondAppletを使うので、sizeはsetupではなくこちらに記述
   fullScreen(P3D, 2);
 }
@@ -41,8 +41,8 @@ void setup() {
   particles=new Solids();
   pt=new PerspectiveTransformer();
   pt.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);
-  ctrl=new Controller(this, 500 * controller_size, 500 * controller_size, "Controller1");
-  ctrl2=new Controller2(this, 500 * controller_size, 500 * controller_size, "Controller2");
+  ctrl=new Controller(this, int(500 * controller_size), int(500 * controller_size), "Controller1");
+  ctrl2=new Controller2(this, int(500 * controller_size), int(500 * controller_size), "Controller2");
   loadF=true;//最初に1度ロードする
   frameRate(50);
 }
