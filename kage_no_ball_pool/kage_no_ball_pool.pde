@@ -22,6 +22,9 @@ Controller ctrl;//別ウィンドウ1
 Controller2 ctrl2;//別ウィンドウ2
 float gravity=10;
 boolean loadF, saveF, clearF;//save,load,clearの同期をとるためのフラグ
+int process_width = 1280;
+int process_height = 720;
+int controller_size = 1;
 void settings() {//SecondAppletを使うので、sizeはsetupではなくこちらに記述
   fullScreen(P3D, 2);
 }
@@ -29,8 +32,8 @@ void setup() {
   //cam=new Capture(this, 640, 480, "USB_Camera");
   cam=new Capture(this, 640, 480, 30);
   cam.start();
-  pg=createGraphics(1280, 720, P3D);
-  mono=createGraphics(1280, 720);
+  pg=createGraphics(process_width, process_height, P3D);
+  mono=createGraphics(process_width, process_height);
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   box2d.setGravity(0, -gravity);
@@ -38,8 +41,8 @@ void setup() {
   particles=new Solids();
   pt=new PerspectiveTransformer();
   pt.setO_corner(0, 0, pg.width, 0, pg.width, pg.height, 0, pg.height);
-  ctrl=new Controller(this, 1000, 1000, "Controller1");
-  ctrl2=new Controller2(this, 1000, 1000, "Controller2");
+  ctrl=new Controller(this, 500 * controller_size, 500 * controller_size, "Controller1");
+  ctrl2=new Controller2(this, 500 * controller_size, 500 * controller_size, "Controller2");
   loadF=true;//最初に1度ロードする
   frameRate(50);
 }
